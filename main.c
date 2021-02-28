@@ -10,8 +10,10 @@ int main()
    //Variables
    int check = 0;
    int continuer = 1;
+   int full_check = 0;
    int Res_Width = 1920;
    int Res_Length = 1080;
+   int selected_button = 0;
    //Variables
 
    //Background
@@ -180,7 +182,6 @@ int main()
                break;
             case (SDL_MOUSEMOTION):
             {
-
                if ((event.motion.x >= continue_start.x) && (event.motion.x <= continue_end.x) && (event.motion.y >= continue_start.y) && (event.motion.y <= continue_end.y))
                {
                   Mix_PlayChannel(-1, select_sound, 0);
@@ -258,16 +259,62 @@ int main()
                switch (event.key.keysym.sym)
                {
                case SDLK_UP:
-                  Mix_VolumeMusic(Volume += 10);
+                  selected_button--;
+                  if (selected_button < 1)
+                     selected_button = 4;
                   break;
                case SDLK_DOWN:
-                  Mix_VolumeMusic(Volume -= 10);
+                  selected_button++;
+                  if (selected_button > 4)
+                     selected_button = 1;
                   break;
                case (SDLK_ESCAPE):
                   continuer = 0;
                   break;
+               case (SDLK_RETURN):
+                  if (selected_button == 3)
+                     check = 1;
+                  if (selected_button == 4)
+                     continuer = 0;
+                  break;
                }
             }
+               if (selected_button == 1)
+               {
+                  Mix_PlayChannel(-1, select_sound, 0);
+                  New_Button = New_Button_h;
+               }
+               else
+               {
+                  New_Button = New_Button_nh;
+               }
+               if (selected_button == 2)
+               {
+                  Mix_PlayChannel(-1, select_sound, 0);
+                  Load_Button = Load_Button_h;
+               }
+               else
+               {
+                  Load_Button = Load_Button_nh;
+               }
+               if (selected_button == 3)
+               {
+                  Mix_PlayChannel(-1, select_sound, 0);
+                  Options_Button = Options_Button_h;
+               }
+               else
+               {
+                  Options_Button = Options_Button_nh;
+               }
+               if (selected_button == 4)
+               {
+                  Mix_PlayChannel(-1, select_sound, 0);
+                  Quit_Button = Quit_Button_h;
+               }
+               else
+               {
+                  Quit_Button = Quit_Button_nh;
+               }
             }
          }
          break;
@@ -282,21 +329,32 @@ int main()
             case (SDL_QUIT):
                continuer = 0;
                break;
-            
-         case (SDL_KEYDOWN):
-            switch (event.key.keysym.sym)
-            {
-            case (SDLK_q):
-               continuer = 0;
-               break;
-            case (SDLK_BACKSPACE):
-               check = 0;
+
+            case (SDL_KEYDOWN):
+               switch (event.key.keysym.sym)
+               {
+               case (SDLK_q):
+                  continuer = 0;
+                  break;
+               case (SDLK_BACKSPACE):
+                  Mix_PlayChannel(-1, click_sound, 0);
+                  check = 0;
+                  break;
+               case (SDLK_f):
+               if(full_check == 0)
+               {
+                  screen = SDL_SetVideoMode(Res_Width, Res_Length, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_FULLSCREEN);
+                  full_check = 1;
+               }
+               else
+               {
+                  screen = SDL_SetVideoMode(Res_Width, Res_Length, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE);
+                  full_check = 0;
+               }
+               }
                break;
             }
-
             break;
-         }
-         break;
          }
       }
       //Main loop
