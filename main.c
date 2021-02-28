@@ -8,6 +8,7 @@ int main()
    //Declaration de variables;
 
    //Variables
+   int check = 0;
    int continuer = 1;
    int Res_Width = 1920;
    int Res_Length = 1080;
@@ -124,135 +125,181 @@ int main()
    //Main Loop
    while (continuer)
    {
-      //Animation Background
-      SDL_BlitSurface(Bg_Image_1, NULL, screen, &Pos_Bg);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(New_Button, NULL, screen, &new_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Load_Button, NULL, screen, &load_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
-      SDL_Flip(screen);
-      //SDL_Delay(1000);
-      SDL_BlitSurface(Bg_Image_2, NULL, screen, &Pos_Bg);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(New_Button, NULL, screen, &new_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Load_Button, NULL, screen, &load_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
-      SDL_Flip(screen);
-      //SDL_Delay(1000);
-      SDL_BlitSurface(Bg_Image_3, NULL, screen, &Pos_Bg);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(New_Button, NULL, screen, &new_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Load_Button, NULL, screen, &load_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
-      //SDL_Flip(screen);
-      SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
-      SDL_Flip(screen);
-      //SDL_Delay(1000);
-      //Animation Background
-
-      while (SDL_PollEvent(&event))
+      switch (check)
       {
-         switch (event.type)
+      case 0:
+
+         //Animation Background
+         SDL_BlitSurface(Bg_Image_1, NULL, screen, &Pos_Bg);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(New_Button, NULL, screen, &new_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Load_Button, NULL, screen, &load_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
+         SDL_Flip(screen);
+         //SDL_Delay(1000);
+         SDL_BlitSurface(Bg_Image_2, NULL, screen, &Pos_Bg);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(New_Button, NULL, screen, &new_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Load_Button, NULL, screen, &load_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
+         SDL_Flip(screen);
+         //SDL_Delay(1000);
+         SDL_BlitSurface(Bg_Image_3, NULL, screen, &Pos_Bg);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(New_Button, NULL, screen, &new_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Load_Button, NULL, screen, &load_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
+         //SDL_Flip(screen);
+         SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
+         SDL_Flip(screen);
+         //SDL_Delay(1000);
+         //Animation Background
+
+         while (SDL_PollEvent(&event))
          {
-         case (SDL_QUIT):
-            continuer = 0;
-            break;
-         case (SDL_MOUSEMOTION):
-         {
-            if ((event.motion.x >= continue_start.x) && (event.motion.x <= continue_end.x) && (event.motion.y >= continue_start.y) && (event.motion.y <= continue_end.y))
+            switch (event.type)
             {
-               Mix_PlayChannel(-1, select_sound, 0);
-               //Continue_Button = Continue_Button_h;
-            }
-            else
-            {
-               Continue_Button = Continue_Button_nh;
-
-            }
-
-            if ((event.motion.x >= new_start.x) && (event.motion.x <= new_end.x) && (event.motion.y) >= (new_start.y) && (event.motion.y) <= (new_end.y))
-            {
-               Mix_PlayChannel(-1, select_sound, 0);
-               New_Button = New_Button_h;
-            }
-            else
-            {
-               New_Button = New_Button_nh;
-            }
-
-            if ((event.motion.x) >= (load_start.x) && (event.motion.x) <= (load_end.x) && (event.motion.y) >= (load_start.y) && (event.motion.y) <= (load_end.y))
-            {
-               Mix_PlayChannel(-1, select_sound, 0);
-               Load_Button = Load_Button_h;
-            }
-            else
-            {
-               Load_Button = Load_Button_nh;
-            }
-
-            if ((event.motion.x) >= (options_start.x) && (event.motion.x) <= (options_end.x) && (event.motion.y) >= (options_start.y) && (event.motion.y) <= (options_end.y))
-            {
-               Mix_PlayChannel(-1, select_sound, 0);
-               Options_Button = Options_Button_h;
-            }
-            else
-            {
-               Options_Button = Options_Button_nh;
-            }
-
-            if ((event.motion.x) >= (quit_start.x) && (event.motion.x) <= (quit_end.x) && (event.motion.y) >= (quit_start.y) && (event.motion.y) <= (quit_end.y))
-            {
-               Mix_PlayChannel(-1, select_sound, 0);
-               Quit_Button = Quit_Button_h;
-            }
-            else
-            {
-               Quit_Button = Quit_Button_nh;
-            }
-         }
-         case SDL_MOUSEBUTTONDOWN:
-         {
-            if ((event.motion.x) >= (continue_start.x) && (event.motion.x) <= (continue_end.x) && (event.motion.y) >= (continue_start.y) && (event.motion.y) <= (continue_end.y) || (event.motion.x) >= (new_start.x) && (event.motion.x) <= (new_end.x) && (event.motion.y) >= (new_start.y) && (event.motion.y) <= (new_end.y) || (event.motion.x) >= (load_start.x) && (event.motion.x) <= (load_end.x) && (event.motion.y) >= (load_start.y) && (event.motion.y) <= (load_end.y) || (event.motion.x) >= (options_start.x) && (event.motion.x) <= (options_end.x) && (event.motion.y) >= (options_start.y) && (event.motion.y) <= (options_end.y) || (event.motion.x) >= (quit_start.x) && (event.motion.x) <= (quit_end.x) && (event.motion.y) >= (quit_start.y) && (event.motion.y) <= (quit_end.y))
-               if (event.button.button = SDL_BUTTON_LEFT)
-               {
-                  Mix_PlayChannel(-1, click_sound, 0);
-               }
-         }
-
-         case (SDL_KEYDOWN):
-         {
-            switch (event.key.keysym.sym)
-            {
-            case SDLK_UP:
-               Mix_VolumeMusic(Volume += 10);
-               break;
-            case SDLK_DOWN:
-               Mix_VolumeMusic(Volume -= 10);
-               break;
-            case (SDLK_ESCAPE):
+            case (SDL_QUIT):
                continuer = 0;
                break;
+            case (SDL_MOUSEMOTION):
+            {
+
+               if ((event.motion.x >= continue_start.x) && (event.motion.x <= continue_end.x) && (event.motion.y >= continue_start.y) && (event.motion.y <= continue_end.y))
+               {
+                  Mix_PlayChannel(-1, select_sound, 0);
+                  //Continue_Button = Continue_Button_h;
+               }
+               else
+               {
+                  Continue_Button = Continue_Button_nh;
+               }
+
+               if ((event.motion.x >= new_start.x) && (event.motion.x <= new_end.x) && (event.motion.y) >= (new_start.y) && (event.motion.y) <= (new_end.y))
+               {
+                  Mix_PlayChannel(-1, select_sound, 0);
+                  New_Button = New_Button_h;
+               }
+               else
+               {
+                  New_Button = New_Button_nh;
+               }
+
+               if ((event.motion.x) >= (load_start.x) && (event.motion.x) <= (load_end.x) && (event.motion.y) >= (load_start.y) && (event.motion.y) <= (load_end.y))
+               {
+                  Mix_PlayChannel(-1, select_sound, 0);
+                  Load_Button = Load_Button_h;
+               }
+               else
+               {
+                  Load_Button = Load_Button_nh;
+               }
+
+               if ((event.motion.x) >= (options_start.x) && (event.motion.x) <= (options_end.x) && (event.motion.y) >= (options_start.y) && (event.motion.y) <= (options_end.y))
+               {
+                  Mix_PlayChannel(-1, select_sound, 0);
+                  Options_Button = Options_Button_h;
+               }
+               else
+               {
+                  Options_Button = Options_Button_nh;
+               }
+
+               if ((event.motion.x) >= (quit_start.x) && (event.motion.x) <= (quit_end.x) && (event.motion.y) >= (quit_start.y) && (event.motion.y) <= (quit_end.y))
+               {
+                  Mix_PlayChannel(-1, select_sound, 0);
+                  Quit_Button = Quit_Button_h;
+               }
+               else
+               {
+                  Quit_Button = Quit_Button_nh;
+               }
+               break;
+            }
+            case SDL_MOUSEBUTTONDOWN:
+            {
+               if ((event.motion.x) >= (continue_start.x) && (event.motion.x) <= (continue_end.x) && (event.motion.y) >= (continue_start.y) && (event.motion.y) <= (continue_end.y) || (event.motion.x) >= (new_start.x) && (event.motion.x) <= (new_end.x) && (event.motion.y) >= (new_start.y) && (event.motion.y) <= (new_end.y) || (event.motion.x) >= (load_start.x) && (event.motion.x) <= (load_end.x) && (event.motion.y) >= (load_start.y) && (event.motion.y) <= (load_end.y) || (event.motion.x) >= (options_start.x) && (event.motion.x) <= (options_end.x) && (event.motion.y) >= (options_start.y) && (event.motion.y) <= (options_end.y) || (event.motion.x) >= (quit_start.x) && (event.motion.x) <= (quit_end.x) && (event.motion.y) >= (quit_start.y) && (event.motion.y) <= (quit_end.y))
+                  if (event.button.button = SDL_BUTTON_LEFT)
+                  {
+                     Mix_PlayChannel(-1, click_sound, 0);
+                  }
+               if ((event.motion.x) >= (options_start.x) && (event.motion.x) <= (options_end.x) && (event.motion.y) >= (options_start.y) && (event.motion.y) <= (options_end.y))
+               {
+                  if (event.button.button = SDL_BUTTON_LEFT)
+                  {
+                     check = 1;
+                  }
+               }
+               if ((event.motion.x) >= (quit_start.x) && (event.motion.x) <= (quit_end.x) && (event.motion.y) >= (quit_start.y) && (event.motion.y) <= (quit_end.y))
+               {
+                  if (event.button.button = SDL_BUTTON_LEFT)
+                     continuer = 0;
+               }
+            }
+
+            case (SDL_KEYDOWN):
+            {
+               switch (event.key.keysym.sym)
+               {
+               case SDLK_UP:
+                  Mix_VolumeMusic(Volume += 10);
+                  break;
+               case SDLK_DOWN:
+                  Mix_VolumeMusic(Volume -= 10);
+                  break;
+               case (SDLK_ESCAPE):
+                  continuer = 0;
+                  break;
+               }
+            }
             }
          }
+         break;
+      case 1:
+         //Interface Option
+         SDL_BlitSurface(Bg_Image_1, NULL, screen, &Pos_Bg);
+         SDL_Flip(screen);
+         while (SDL_PollEvent(&event))
+         {
+            switch (event.type)
+            {
+            case (SDL_QUIT):
+               continuer = 0;
+               break;
+            
+         case (SDL_KEYDOWN):
+            switch (event.key.keysym.sym)
+            {
+            case (SDLK_q):
+               continuer = 0;
+               break;
+            case (SDLK_BACKSPACE):
+               check = 0;
+               break;
+            }
+
+            break;
+         }
+         break;
          }
       }
+      //Main loop
    }
-   //Main loop
    return 0;
 }
