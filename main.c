@@ -24,6 +24,7 @@ int main()
    SDL_Surface *Load_Button = NULL;
    SDL_Surface *Options_Button = NULL;
    SDL_Surface *Quit_Button = NULL;
+
    //Buttons
 
    //Button Coordinates
@@ -33,9 +34,9 @@ int main()
    SDL_Rect options_start,options_end;
    SDL_Rect quit_start,quit_end;
    continue_start.x = 194, continue_end.x = 461;
-   continue_start.y = 155, continue_end.y = 274;
+   continue_start.y = 155, continue_end.y = 254;
    new_start.x = 194, new_end.x=534;
-   new_start.y = 305, new_end.y=424;
+   new_start.y = 335, new_end.y=425;
    load_start.x = 194, load_end.x = 526;
    load_start.y = 455, load_end.y = 574;
    options_start.x = 194, options_end.x = 426;
@@ -65,16 +66,12 @@ int main()
 
    //Declaration de variables;
 
-   
-      //Animation Background
-   //Background blit
-
    //Initialisation video
    SDL_Init(SDL_INIT_VIDEO);
 
    if (SDL_Init(SDL_INIT_VIDEO) != 0)
    {
-      printf("Unable to initialize SDL: %s \n", SDL_GetError());
+      printf("Unuable to initialize SDL: %s \n", SDL_GetError());
       return 1;
    }
    //Initialisation video
@@ -89,7 +86,10 @@ int main()
    Load_Button = IMG_Load("Assets/Images/UI/Load.png");
    Options_Button = IMG_Load("Assets/Images/UI/Options.png");
    Quit_Button = IMG_Load("Assets/Images/UI/Quit.png");
+   
+   
    //Load Images
+
 
    //Initialisation son
    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
@@ -104,6 +104,7 @@ int main()
    //Main Loop
    while (continuer)
    {
+      //Animation Background
       SDL_BlitSurface(Bg_Image_1, NULL, screen, &Pos_Bg);
       //SDL_Flip(screen);
       SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
@@ -143,6 +144,7 @@ int main()
       SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
       SDL_Flip(screen);
       //SDL_Delay(1000);
+      //Animation Background
 
       while (SDL_PollEvent(&event))
       {
@@ -153,12 +155,75 @@ int main()
             break;
          case (SDL_MOUSEMOTION):
          {
-            //printf("x = %d\n",event.motion.x);
-            //printf("y = %d\n",event.motion.y);
-            if ((event.motion.x) >= (continue_start.x) && (event.motion.x) <= (continue_end.x) && (event.motion.y) >= (continue_start.y) && (event.motion.y) <= (continue_end.y) || (event.motion.x) >= (new_start.x) && (event.motion.x) <= (new_end.x) && (event.motion.y) >= (new_start.y) && (event.motion.y) <= (new_end.y) || (event.motion.x) >= (load_start.x) && (event.motion.x) <= (load_end.x) && (event.motion.y) >= (load_start.y) && (event.motion.y) <= (load_end.y) || (event.motion.x) >= (options_start.x) && (event.motion.x) <= (options_end.x) && (event.motion.y) >= (options_start.y) && (event.motion.y) <= (options_end.y) || (event.motion.x) >= (quit_start.x) && (event.motion.x) <= (quit_end.x) && (event.motion.y) >= (quit_start.y) && (event.motion.y) <= (quit_end.y))
+            if ((event.motion.x >= continue_start.x) && (event.motion.x <= continue_end.x) && (event.motion.y >= continue_start.y) && (event.motion.y <= continue_end.y))
             {
                Mix_PlayChannel(-1, sound, 0);
+               Continue_Button= IMG_Load("Assets/Images/UI/Continue1.png");
+               SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
             }
+            else
+            {
+            Continue_Button= IMG_Load("Assets/Images/UI/Continue0.png");
+               SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
+             }
+         
+         
+      if ((event.motion.x >= new_start.x) && (event.motion.x <= new_end.x) && (event.motion.y) >= (new_start.y) && (event.motion.y) <= (new_end.y))
+            {
+               Mix_PlayChannel(-1, sound, 0);
+               New_Button= IMG_Load("Assets/Images/UI/New1.png");
+               SDL_BlitSurface(New_Button, NULL, screen, &new_start);
+            }
+             else
+            { 
+            New_Button= IMG_Load("Assets/Images/UI/New.png");
+               SDL_BlitSurface(New_Button, NULL, screen, &new_start);
+               }
+               
+        if ((event.motion.x) >= (load_start.x) && (event.motion.x) <= (load_end.x) && (event.motion.y) >= (load_start.y) && (event.motion.y) <= (load_end.y))
+        {
+               Mix_PlayChannel(-1, sound, 0);
+               Load_Button= IMG_Load("Assets/Images/UI/Load1.png");
+               SDL_BlitSurface(Load_Button, NULL, screen, &load_start);
+            }
+             else
+            { 
+            Load_Button= IMG_Load("Assets/Images/UI/Load.png");
+               SDL_BlitSurface(Load_Button, NULL, screen, &load_start);
+            }
+         
+         
+         
+         
+         if ((event.motion.x) >= (options_start.x) && (event.motion.x) <= (options_end.x) && (event.motion.y) >= (options_start.y) && (event.motion.y) <= (options_end.y) )
+       {
+               Mix_PlayChannel(-1, sound, 0);
+               Options_Button= IMG_Load("Assets/Images/UI/Options1.png");
+               SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
+            }
+             else
+            { 
+            Options_Button= IMG_Load("Assets/Images/UI/Options.png");
+            SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
+            }
+         
+        
+        
+        
+         if ((event.motion.x) >= (quit_start.x) && (event.motion.x) <= (quit_end.x) && (event.motion.y) >= (quit_start.y) && (event.motion.y) <= (quit_end.y))
+         {
+               Mix_PlayChannel(-1, sound, 0);
+               Quit_Button= IMG_Load("Assets/Images/UI/Quit1.png");
+               SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
+            }
+             else
+            { 
+            Quit_Button= IMG_Load("Assets/Images/UI/Quit.png");
+               SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
+            }
+         
+         
+         
          }
          case SDL_MOUSEBUTTONDOWN:
          {
