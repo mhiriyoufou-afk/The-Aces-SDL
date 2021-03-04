@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_mixer.h>
+#include <SDL/SDL_ttf.h>
 int main()
 {
    //Declaration de variables;
@@ -89,7 +90,21 @@ int main()
       return 1;
    }
    //Initialisation video
+//texte
+TTF_Font *police=NULL;
+    SDL_Surface *texte=NULL;
+    SDL_Rect position;
+    SDL_Color couleurnoire={0,0,0};
+    TTF_Init();
+    police=TTF_OpenFont("Assets/Fonts/Candara.ttf",18);
+    texte = TTF_RenderText_Blended(police, "(c) copyright, all rights reserved. THE ACES.", couleurnoire);
+    position.x=1000;
+    position.y=900;
 
+     
+     /*SDL_Flip(ecran);
+     SDL_FreeSurface(texte);
+     SDL_Quit();*/
    //Load Images
    screen = SDL_SetVideoMode(Res_Width, Res_Length, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE);
    Bg_Image_1 = IMG_Load("Assets/Images/Backgrounds/first.png");
@@ -143,6 +158,7 @@ int main()
          SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
          //SDL_Flip(screen);
          SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
+         SDL_BlitSurface(texte, NULL, screen, &position); 
          SDL_Flip(screen);
          //SDL_Delay(1000);
          SDL_BlitSurface(Bg_Image_2, NULL, screen, &Pos_Bg);
@@ -156,6 +172,7 @@ int main()
          SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
          //SDL_Flip(screen);
          SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
+         SDL_BlitSurface(texte, NULL, screen, &position); 
          SDL_Flip(screen);
          //SDL_Delay(1000);
          SDL_BlitSurface(Bg_Image_3, NULL, screen, &Pos_Bg);
@@ -169,6 +186,7 @@ int main()
          SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
          //SDL_Flip(screen);
          SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
+         SDL_BlitSurface(texte, NULL,screen, &position); 
          SDL_Flip(screen);
          //SDL_Delay(1000);
          //Animation Background
@@ -340,6 +358,15 @@ int main()
                   Mix_PlayChannel(-1, click_sound, 0);
                   check = 0;
                   break;
+		case SDLK_UP:
+               Mix_VolumeMusic(Volume += 10);
+               break;
+            case SDLK_DOWN:
+               Mix_VolumeMusic(Volume -= 10);
+               break;
+            case (SDLK_ESCAPE):
+               continuer = 0;
+               break;
                case (SDLK_f):
                if(full_check == 0)
                {
