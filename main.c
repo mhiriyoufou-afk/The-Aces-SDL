@@ -106,7 +106,25 @@ int main()
      SDL_FreeSurface(texte);
      SDL_Quit();*/
    //Load Images
-   load_images(screen,Bg_Image_1,Bg_Image_2,Bg_Image_3,Continue_Button,Continue_Button_nh,Continue_Button_h,New_Button,New_Button_nh,New_Button_h,Load_Button,Load_Button_nh,Load_Button_h,Options_Button,Options_Button_nh,Options_Button_h,Quit_Button,Quit_Button_nh,Quit_Button_h);
+   screen = SDL_SetVideoMode(Res_Width, Res_Length, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE);
+   Bg_Image_1 = IMG_Load("Assets/Images/Backgrounds/first.png");
+   Bg_Image_2 = IMG_Load("Assets/Images/Backgrounds/second.png");
+   Bg_Image_3 = IMG_Load("Assets/Images/Backgrounds/third.png");
+   Continue_Button = IMG_Load("Assets/Images/UI/Continue0.png");
+   Continue_Button_nh = IMG_Load("Assets/Images/UI/Continue0.png");
+   Continue_Button_h = IMG_Load("Assets/Images/UI/Continue1.png");
+   New_Button = IMG_Load("Assets/Images/UI/New.png");
+   New_Button_nh = IMG_Load("Assets/Images/UI/New.png");
+   New_Button_h = IMG_Load("Assets/Images/UI/New1.png");
+   Load_Button = IMG_Load("Assets/Images/UI/Load.png");
+   Load_Button_nh = IMG_Load("Assets/Images/UI/Load.png");
+   Load_Button_h = IMG_Load("Assets/Images/UI/Load1.png");
+   Options_Button = IMG_Load("Assets/Images/UI/Options.png");
+   Options_Button_nh = IMG_Load("Assets/Images/UI/Options.png");
+   Options_Button_h = IMG_Load("Assets/Images/UI/Options1.png");
+   Quit_Button = IMG_Load("Assets/Images/UI/Quit.png");
+   Quit_Button_nh = IMG_Load("Assets/Images/UI/Quit.png");
+   Quit_Button_h = IMG_Load("Assets/Images/UI/Quit1.png");
    //Load Images
 
    //Initialisation son
@@ -128,48 +146,12 @@ int main()
       case 0:
 
          //Animation Background
-         SDL_BlitSurface(Bg_Image_1, NULL, screen, &Pos_Bg);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(New_Button, NULL, screen, &new_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Load_Button, NULL, screen, &load_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
-         SDL_BlitSurface(texte, NULL, screen, &position);
-         SDL_Flip(screen);
-         //SDL_Delay(1000);
-         SDL_BlitSurface(Bg_Image_2, NULL, screen, &Pos_Bg);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(New_Button, NULL, screen, &new_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Load_Button, NULL, screen, &load_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
-         SDL_BlitSurface(texte, NULL, screen, &position);
-         SDL_Flip(screen);
-         //SDL_Delay(1000);
-         SDL_BlitSurface(Bg_Image_3, NULL, screen, &Pos_Bg);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Continue_Button, NULL, screen, &continue_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(New_Button, NULL, screen, &new_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Load_Button, NULL, screen, &load_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Options_Button, NULL, screen, &options_start);
-         //SDL_Flip(screen);
-         SDL_BlitSurface(Quit_Button, NULL, screen, &quit_start);
-         SDL_BlitSurface(texte, NULL, screen, &position);
-         SDL_Flip(screen);
-         //SDL_Delay(1000);
+         blit_images(screen, Bg_Image_1, Bg_Image_2, Bg_Image_3, Continue_Button, New_Button, Load_Button, Options_Button, Quit_Button, continue_start,
+                     new_start,
+                     load_start,
+                     options_start,
+                     quit_start,
+                     Pos_Bg, position, texte);
          //Animation Background
 
          while (SDL_PollEvent(&event))
