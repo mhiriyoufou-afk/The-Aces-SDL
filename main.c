@@ -97,6 +97,10 @@ int main()
    position_texte.x = 1000;
    position_texte.y = 900;
 
+     
+     /*SDL_Flip(ecran);
+     SDL_FreeSurface(texte);
+     SDL_Quit();*/
    //Load Images
    screen = SDL_SetVideoMode(Res_Width, Res_Length, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE);
    Bg_Image_1 = IMG_Load("Assets/Images/Backgrounds/first.png");
