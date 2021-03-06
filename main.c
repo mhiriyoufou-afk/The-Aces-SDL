@@ -1,10 +1,4 @@
 #include "load.h"
-#include <SDL/SDL.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <SDL/SDL_image.h>
-#include <SDL/SDL_mixer.h>
-#include <SDL/SDL_ttf.h>
 int main()
 {
    //Declaration de variables;
@@ -91,20 +85,17 @@ int main()
       return 1;
    }
    //Initialisation video
-   //texte
+   //Texte
    TTF_Font *police = NULL;
    SDL_Surface *texte = NULL;
-   SDL_Rect position;
+   SDL_Rect position_texte;
    SDL_Color couleurnoire = {0, 0, 0};
    TTF_Init();
    police = TTF_OpenFont("Assets/Fonts/Candara.ttf", 18);
    texte = TTF_RenderText_Blended(police, "(c) copyright, all rights reserved. THE ACES.", couleurnoire);
-   position.x = 1000;
-   position.y = 900;
+   position_texte.x = 1000;
+   position_texte.y = 900;
 
-   /*SDL_Flip(ecran);
-     SDL_FreeSurface(texte);
-     SDL_Quit();*/
    //Load Images
    screen = SDL_SetVideoMode(Res_Width, Res_Length, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE);
    Bg_Image_1 = IMG_Load("Assets/Images/Backgrounds/first.png");
@@ -151,7 +142,7 @@ int main()
                      load_start,
                      options_start,
                      quit_start,
-                     Pos_Bg, position, texte);
+                     Pos_Bg, position_texte, texte);
          //Animation Background
 
          while (SDL_PollEvent(&event))
@@ -163,78 +154,38 @@ int main()
                break;
             case (SDL_MOUSEMOTION):
             {
-               if ((event.motion.x >= continue_start.x) && (event.motion.x <= continue_end.x) && (event.motion.y >= continue_start.y) && (event.motion.y <= continue_end.y))
-               {
-                  Mix_PlayChannel(-1, select_sound, 0);
-                  //Continue_Button = Continue_Button_h;
-               }
-               else
-               {
-                  Continue_Button = Continue_Button_nh;
-               }
-
-               if ((event.motion.x >= new_start.x) && (event.motion.x <= new_end.x) && (event.motion.y) >= (new_start.y) && (event.motion.y) <= (new_end.y))
-               {
-                  Mix_PlayChannel(-1, select_sound, 0);
-                  New_Button = New_Button_h;
-               }
-               else
-               {
-                  New_Button = New_Button_nh;
-               }
-
-               if ((event.motion.x) >= (load_start.x) && (event.motion.x) <= (load_end.x) && (event.motion.y) >= (load_start.y) && (event.motion.y) <= (load_end.y))
-               {
-                  Mix_PlayChannel(-1, select_sound, 0);
-                  Load_Button = Load_Button_h;
-               }
-               else
-               {
-                  Load_Button = Load_Button_nh;
-               }
-
-               if ((event.motion.x) >= (options_start.x) && (event.motion.x) <= (options_end.x) && (event.motion.y) >= (options_start.y) && (event.motion.y) <= (options_end.y))
-               {
-                  Mix_PlayChannel(-1, select_sound, 0);
-                  Options_Button = Options_Button_h;
-               }
-               else
-               {
-                  Options_Button = Options_Button_nh;
-               }
-
-               if ((event.motion.x) >= (quit_start.x) && (event.motion.x) <= (quit_end.x) && (event.motion.y) >= (quit_start.y) && (event.motion.y) <= (quit_end.y))
-               {
-                  Mix_PlayChannel(-1, select_sound, 0);
-                  Quit_Button = Quit_Button_h;
-               }
-               else
-               {
-                  Quit_Button = Quit_Button_nh;
-               }
+               mouse_sound(continue_start, continue_end,
+                                new_start, new_end,
+                                load_start, load_end,
+                                options_start, options_end,
+                                quit_start, quit_end, 
+                                Continue_Button,
+                                Continue_Button_h,
+                                Continue_Button_nh,
+                                New_Button,
+                                New_Button_h,
+                                New_Button_nh,
+                                Load_Button,
+                                Load_Button_h,
+                                Load_Button_nh,
+                                Options_Button,
+                                Options_Button_h,
+                                Options_Button_nh,
+                                Quit_Button,
+                                Quit_Button_h,
+                                Quit_Button_nh,
+                                event,
+                                select_sound);
                break;
             }
             case SDL_MOUSEBUTTONDOWN:
             {
-               if ((event.motion.x) >= (continue_start.x) && (event.motion.x) <= (continue_end.x) && (event.motion.y) >= (continue_start.y) && (event.motion.y) <= (continue_end.y) || (event.motion.x) >= (new_start.x) && (event.motion.x) <= (new_end.x) && (event.motion.y) >= (new_start.y) && (event.motion.y) <= (new_end.y) || (event.motion.x) >= (load_start.x) && (event.motion.x) <= (load_end.x) && (event.motion.y) >= (load_start.y) && (event.motion.y) <= (load_end.y) || (event.motion.x) >= (options_start.x) && (event.motion.x) <= (options_end.x) && (event.motion.y) >= (options_start.y) && (event.motion.y) <= (options_end.y) || (event.motion.x) >= (quit_start.x) && (event.motion.x) <= (quit_end.x) && (event.motion.y) >= (quit_start.y) && (event.motion.y) <= (quit_end.y))
-                  if (event.button.button = SDL_BUTTON_LEFT)
-                  {
-                     Mix_PlayChannel(-1, click_sound, 0);
-                  }
-               if ((event.motion.x) >= (options_start.x) && (event.motion.x) <= (options_end.x) && (event.motion.y) >= (options_start.y) && (event.motion.y) <= (options_end.y))
-               {
-                  if (event.button.button = SDL_BUTTON_LEFT)
-                  {
-                     check = 1;
-                  }
-               }
-               if ((event.motion.x) >= (quit_start.x) && (event.motion.x) <= (quit_end.x) && (event.motion.y) >= (quit_start.y) && (event.motion.y) <= (quit_end.y))
-               {
-                  if (event.button.button = SDL_BUTTON_LEFT)
-                     continuer = 0;
-               }
+               mouse_click(event,  continue_start,  continue_end,
+                  new_start,  new_end,
+                  load_start,  load_end,
+                  options_start,  options_end,
+                  quit_start,  quit_end, click_sound,&check,&continuer);
             }
-
             case (SDL_KEYDOWN):
             {
                switch (event.key.keysym.sym)
@@ -260,42 +211,21 @@ int main()
                   break;
                }
             }
-               if (selected_button == 1)
-               {
-                  Mix_PlayChannel(-1, select_sound, 0);
-                  New_Button = New_Button_h;
-               }
-               else
-               {
-                  New_Button = New_Button_nh;
-               }
-               if (selected_button == 2)
-               {
-                  Mix_PlayChannel(-1, select_sound, 0);
-                  Load_Button = Load_Button_h;
-               }
-               else
-               {
-                  Load_Button = Load_Button_nh;
-               }
-               if (selected_button == 3)
-               {
-                  Mix_PlayChannel(-1, select_sound, 0);
-                  Options_Button = Options_Button_h;
-               }
-               else
-               {
-                  Options_Button = Options_Button_nh;
-               }
-               if (selected_button == 4)
-               {
-                  Mix_PlayChannel(-1, select_sound, 0);
-                  Quit_Button = Quit_Button_h;
-               }
-               else
-               {
-                  Quit_Button = Quit_Button_nh;
-               }
+               keyboard_select(selected_button,select_sound,Continue_Button,
+                 Continue_Button_h,
+                 Continue_Button_nh,
+                 New_Button,
+                 New_Button_h,
+                 New_Button_nh,
+                 Load_Button,
+                 Load_Button_h,
+                 Load_Button_nh,
+                 Options_Button,
+                 Options_Button_h,
+                 Options_Button_nh,
+                 Quit_Button,
+                 Quit_Button_h,
+                 Quit_Button_nh);
             }
          }
          break;
