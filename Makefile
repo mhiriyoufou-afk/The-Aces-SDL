@@ -1,6 +1,8 @@
-Aces:load.o main.o 
-	gcc load.o main.o -o Aces -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer
+Aces:First_Page.o Second_Page.o main.o 
+	gcc First_Page.o Second_Page.o main.o -o Aces -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer
 main.o:main.c 
 	gcc -c main.c 
-load.o:load.c 
-	gcc -c load.c 
+Second_Page.o:Second_Page.c
+	gcc -c Second_Page.c
+First_Page.o:First_Page.c 
+	gcc -c First_Page.c 

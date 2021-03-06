@@ -1,4 +1,4 @@
-#include "load.h"
+#include "First_Page.h"
 
 void blit_images(SDL_Surface *screen, SDL_Surface *Bg_Image_1, SDL_Surface *Bg_Image_2, SDL_Surface *Bg_Image_3, SDL_Surface *Continue_Button, SDL_Surface *New_Button, SDL_Surface *Load_Button, SDL_Surface *Options_Button, SDL_Surface *Quit_Button, SDL_Rect continue_start,
                  SDL_Rect new_start,

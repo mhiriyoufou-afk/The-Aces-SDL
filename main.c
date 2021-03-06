@@ -1,4 +1,5 @@
-#include "load.h"
+#include "First_Page.h"
+#include "Second_Page.h"
 int main()
 {
    //Declaration de variables;
